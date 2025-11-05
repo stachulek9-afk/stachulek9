@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head><meta charset="utf-8"><title>AutoPlay</title></head>
+<body>
+  <div id="info">Trwa próba autoodtwarzania...</div>
+  <audio id="a" preload="auto">
+    <source src="https://voca.ro/18lggTYXtMIX" type="audio/mpeg">
+  </audio>
+  <button id="btn" style="display:none">Kliknij, aby odtworzyć</button>
+
+  <script>
+    const a = document.getElementById('a');
+    const btn = document.getElementById('btn');
+    const info = document.getElementById('info');
+
+    a.play().then(() => {
+      info.textContent = 'Odtwarzane automatycznie 🎵';
+    }).catch(() => {
+      info.textContent = 'Autoodtwarzanie zablokowane — kliknij przycisk';
+      btn.style.display = 'inline-block';
+    });
+
+    btn.addEventListener('click', () => {
+      a.play();
+      btn.style.display = 'none';
+      info.textContent = 'Odtwarzanie... 🎶';
+    });
+  </script>
+</body>
+</html>
